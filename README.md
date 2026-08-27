@@ -63,7 +63,7 @@ sri/
 
 ```bash
 # 1. Cloner le repo
-git clone https://github.com/<ton-user>/sri-image-retrieval.git
+git clone https://github.com/naj-ds/sri-image-retrieval.git
 cd sri-image-retrieval
 
 # 2. Créer un environnement virtuel
