@@ -83,8 +83,6 @@ python manage.py createsuperuser
 python manage.py runserver
 ```
 
-Rends-toi sur `http://127.0.0.1:8000/` pour la recherche par mots-clés, ou `http://127.0.0.1:8000/upload/` pour la recherche par image.
-
 ## 📊 Utilisation
 
 - **Recherche par mots-clés** : tape un mot-clé associé à une ou plusieurs images (ex. "tigre") → la page affiche les images correspondantes.
