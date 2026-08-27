@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Images Similaires</title>
+</head>
+<body>
+    <h1>Images Similaires</h1>
+
+    {% if similar_images %}
+        <ul>
+            {% for image in similar_images %}
+                <img src="{{ image.image}}" alt="{{ image.title }}" width="200" height="150">
+                <!-- Ajoutez d'autres détails si nécessaire -->
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Aucune image similaire trouvée.</p>
+    {% endif %}
+    <br>
+    <a href="{% url 'search' %}"><button>Retourner à la recherche</button></a>
+
+</body>
+</html>

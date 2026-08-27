@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Recherche d'Images Similaires</title>
+</head>
+<body>
+    <h1>Recherche d'Images Similaires</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="file" name="image_file">
+        <button type="submit">Rechercher des Images Similaires</button>
+    </form>
+</body>
+</html>

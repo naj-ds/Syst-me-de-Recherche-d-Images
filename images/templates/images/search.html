@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Recherche par Mots-Clés</title>
+</head>
+<body>
+    <h1>Recherche par Mots-Clés</h1>
+    <form method="post" action="{% url 'search' %}">
+        {% csrf_token %}
+        <input type="text" name="search_query" placeholder="Entrez un mot-clé">
+        <button type="submit">Rechercher</button>
+    </form>
+<br>
+<h1>Recherche par Images</h1>
+
+    <!-- Formulaire pour la recherche d'images similaires -->
+    <form method="post" action="{% url 'upload_image' %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        <label for="image_file">Uploader une image pour la recherche d'images similaires:</label>
+        <input type="file" name="image_file" id="image_file">
+        <button type="submit">Rechercher des Images Similaires</button>
+    </form>
+</body>
+</html>

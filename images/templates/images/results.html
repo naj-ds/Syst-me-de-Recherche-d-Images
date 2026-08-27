@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Résultats de la Recherche</title>
+</head>
+<body>
+    <h1>Résultats de la Recherche</h1>
+    {% if results %}
+        <ul>
+            {% for result in results %}
+                <img src="{{ result.image_file.url }}" alt="{{ result.title }}" width="200" height="150">
+                <!-- Affichez d'autres détails si nécessaire -->
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Aucun résultat trouvé.</p>
+    {% endif %}
+
+    <br>
+    <a href="{% url 'search' %}"><button>Retourner à la recherche</button></a>
+</body>
+</html>
