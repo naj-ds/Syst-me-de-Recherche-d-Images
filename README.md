@@ -90,25 +90,6 @@ Rends-toi sur `http://127.0.0.1:8000/` pour la recherche par mots-clés, ou `htt
 - **Recherche par mots-clés** : tape un mot-clé associé à une ou plusieurs images (ex. "tigre") → la page affiche les images correspondantes.
 - **Recherche par image** : uploade une photo → le système renvoie les 3 images les plus visuellement similaires dans la base.
 
-## 🐛 Corrections apportées
-
-- **Template manquant corrigé** : `views.py` référençait `images/upload_image.html` alors que le fichier réel s'appelle `upload_images.html` (avec un "s"), ce qui provoquait une erreur `TemplateDoesNotExist` en accès GET sur `/upload/`. Corrigé pour pointer vers le bon nom de fichier.
-
-## ⚠️ Limitations connues
-
-- **Bug dans `Image.save()`** : la méthode vide la liste de mots-clés (`self.keywords.clear()`) puis tente de la re-remplir à partir de `self.keywords.all()` — qui est déjà vide à ce stade. Résultat : aucun mot-clé n'est jamais réellement ajouté via cette méthode. À revoir selon le comportement souhaité (probablement recevoir une liste de mots-clés en paramètre de `save()`).
-- **Modèle VGG16 rechargé à chaque requête** : `extract_vgg_features()` instancie un nouveau modèle VGG16 à chaque recherche, ce qui est lent. Il serait plus performant de charger le modèle une seule fois au démarrage de l'application (ex. dans `apps.py` ou en variable de module).
-- **Pas de recalcul automatique des features** : si de nouvelles images sont ajoutées sans appeler explicitement `save_vgg_features()`, leurs caractéristiques ne sont jamais calculées, et la recherche par similarité échouera ou les ignorera silencieusement.
-- **`DEBUG = True`** dans `settings.py` et `SECRET_KEY` en clair — à externaliser dans des variables d'environnement avant tout déploiement public.
-- **Base de données de démonstration très restreinte** (une quinzaine d'images, 5 catégories) — utile pour une preuve de concept, pas représentative en conditions réelles.
-
-## 🔮 Améliorations possibles
-
-- Précalculer et mettre en cache le modèle VGG16 au démarrage de l'app plutôt qu'à chaque requête.
-- Ajouter une commande de management Django (`manage.py recompute_features`) pour recalculer les features en lot.
-- Passer d'un `NearestNeighbors` recalculé à chaque requête à un index vectoriel (FAISS, Annoy) pour scaler sur de grandes bases d'images.
-- Ajouter des tests unitaires sur l'extraction de features et le matching par mots-clés.
-
 ## 📄 Licence
 
 Ce projet est distribué sous licence MIT — voir le fichier [LICENSE](LICENSE).
